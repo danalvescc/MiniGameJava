@@ -9,10 +9,12 @@ import javax.swing.JPanel;
 public class Game extends JPanel{
 	private Bola bola;
 	private Inimigo inimigo;
+	private Background background;
 	private boolean k_cima = false;
 	private boolean k_baixo = false;
 	private BufferedImage imgAtual;
 	private Recursos recurso = Recursos.getInstance();
+
 	
 	public Game() {
 		addKeyListener(new KeyListener() {
@@ -37,6 +39,7 @@ public class Game extends JPanel{
 		});
 		bola = new Bola();
 		inimigo = new Inimigo();
+		background = new Background();
 		setFocusable(true);
 		setLayout(null);
 		
@@ -109,7 +112,9 @@ public class Game extends JPanel{
 
 	public void reiniciarGame(){
 		reiniciarPosicao();
-		recurso.pontuacaoAnterior = recurso.pontuacaoAtual;
+		if(recurso.pontuacaoAtual > recurso.record){
+			recurso.record = recurso.pontuacaoAtual;
+		}
 		recurso.pontuacaoAtual = 0;
 	}
 
@@ -164,10 +169,15 @@ public class Game extends JPanel{
 		super.paintComponent(g);
 		setBackground(Color.LIGHT_GRAY);
 		g.setColor(Color.RED);
+
+		g.drawImage(background.img, 0, 0, null);
+
 		g.drawImage(imgAtual, bola.posX, bola.posY, null);
 		g.drawImage(inimigo.img, inimigo.posX, inimigo.posY, null);
 
 		g.drawString("Pontuação:", 10, 20);
 		g.drawString(Integer.toString(recurso.pontuacaoAtual) ,10, 40 );
+		g.drawString("Recorde:", 10, 60);
+		g.drawString(Integer.toString(recurso.record) ,10, 80 );
 	}
 }

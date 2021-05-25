@@ -2,7 +2,7 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 
 public class Principal {
-	public static final int LARGURA_TELA = 1080;
+	public static final int LARGURA_TELA = 1024;
 	public static final int ALTURA_TELA = 480;
 	
 	public Principal() {

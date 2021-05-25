@@ -9,9 +9,11 @@ public class Recursos {
         if(singleton == null){
             singleton = new Recursos();
         }
+        
         return singleton;
+        
     }
-
+    
     public int pontuacaoAtual = 0;
-    public int pontuacaoAnterior = 0;
+    public int record = 0;
 }
